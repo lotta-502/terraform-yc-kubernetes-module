@@ -16,7 +16,7 @@ variable "cluster_description" {
 }
 
 variable "allowed_ips" {
-  type = string
+  type = list(string)
   default = []
 }
 
