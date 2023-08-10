@@ -9,15 +9,11 @@ resource "random_string" "unique_id" {
 resource "yandex_iam_service_account" "master" {
   folder_id = var.folder_id
   name      = "k8s-master-sa-${random_string.unique_id.result}"
-
-  labels = var.labels
 }
 
 resource "yandex_iam_service_account" "node" {
   folder_id = var.folder_id
   name      = "k8s-node-sa-${random_string.unique_id.result}"
-
-  labels = var.labels
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "sa_calico_network_policy_role" {
