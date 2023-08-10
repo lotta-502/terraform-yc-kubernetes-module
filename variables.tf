@@ -10,7 +10,7 @@ variable "cluster_name" {
   type = string
 }
 
-variable "description" {
+variable "cluster_description" {
   type    = string
   default = ""
 }

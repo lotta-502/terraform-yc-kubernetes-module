@@ -169,7 +169,7 @@ resource "yandex_kubernetes_cluster" "this" {
 
   folder_id               = var.folder_id
   name                    = "${var.cluster_name}-${random_string.unique_id.result}"
-  description             = var.description
+  description             = var.cluster_description
   network_id              = var.network_id
   cluster_ipv4_range      = var.cluster_ipv4_range
   cluster_ipv6_range      = var.cluster_ipv6_range
