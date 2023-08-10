@@ -20,40 +20,30 @@ resource "yandex_resourcemanager_folder_iam_member" "sa_calico_network_policy_ro
   folder_id = var.folder_id
   role      = "k8s.clusters.agent"
   member    = "serviceAccount:${yandex_iam_service_account.master.id}"
-
-  labels = var.labels
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "sa_vpc_public_role_admin" {
   folder_id = var.folder_id
   role      = "vpc.publicAdmin"
   member    = "serviceAccount:${yandex_iam_service_account.master.id}"
-
-  labels = var.labels
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "sa_loadbalancer_role_admin" {
   folder_id = var.folder_id
   role      = "load-balancer.admin"
   member    = "serviceAccount:${yandex_iam_service_account.master.id}"
-
-  labels = var.labels
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "sa_logging_writer_role" {
   folder_id = var.folder_id
   role      = "logging.writer"
   member    = "serviceAccount:${yandex_iam_service_account.master.id}"
-
-  labels = var.labels
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "node" {
   folder_id = var.folder_id
   role      = "container-registry.images.puller"
   member    = "serviceAccount:${yandex_iam_service_account.node.id}"
-
-  labels = var.labels
 }
 
 resource "time_sleep" "wait_for_iam" {
@@ -83,8 +73,6 @@ resource "yandex_kms_symmetric_key_iam_binding" "encrypter_decrypter" {
   members = [
     "serviceAccount:${yandex_iam_service_account.master.id}",
   ]
-
-  labels = var.labels
 }
 
 resource "yandex_vpc_security_group" "k8s_node" {
