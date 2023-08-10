@@ -49,7 +49,7 @@ resource "yandex_resourcemanager_folder_iam_member" "node" {
 resource "time_sleep" "wait_for_iam" {
   create_duration = "5s"
   depends_on = [
-    yandex_resourcemanager_folder_iam_member.node_account,
+    yandex_resourcemanager_folder_iam_member.node,
     yandex_resourcemanager_folder_iam_member.sa_calico_network_policy_role,
     yandex_resourcemanager_folder_iam_member.sa_vpc_public_role_admin,
     yandex_resourcemanager_folder_iam_member.sa_loadbalancer_role_admin,
