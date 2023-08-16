@@ -16,7 +16,7 @@ variable "cluster_description" {
 }
 
 variable "allowed_ips" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
@@ -89,5 +89,10 @@ variable "release_channel" {
 
 variable "labels" {
   type    = map(string)
+  default = {}
+}
+
+variable "kubernetes_node_groups" {
+  type    = any
   default = {}
 }

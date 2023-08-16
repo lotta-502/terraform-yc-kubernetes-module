@@ -169,8 +169,8 @@ resource "yandex_kubernetes_cluster" "this" {
   }
 
   master {
-    version            = var.cluster_version
-    public_ip          = var.public_access
+    version   = var.cluster_version
+    public_ip = var.public_access
     security_group_ids = [
       yandex_vpc_security_group.k8s_master.id,
       yandex_vpc_security_group.k8s_node.id,
