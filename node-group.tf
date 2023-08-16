@@ -51,7 +51,6 @@ resource "yandex_kubernetes_node_group" "this" {
   allocation_policy {
     location {
       zone      = each.value.allocation_policy.location.zone
-      subnet_id = each.value.allocation_policy.location.subnet_id
     }
   }
 
