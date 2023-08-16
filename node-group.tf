@@ -1,5 +1,5 @@
 resource "yandex_kubernetes_node_group" "this" {
-  for_each = var.kubernetes_node_groups
+  for_each = var.node_groups
 
   name        = each.key
   description = "Kubernetes cluster ${var.cluster_name} node group ${each.key}"
@@ -16,29 +16,29 @@ resource "yandex_kubernetes_node_group" "this" {
   }
 
   instance_template {
-    platform_id = each.value.platform_id
-    nat         = try(each.value.nat, null)
-    metadata    = try(each.value.metadata, null)
+    platform_id = each.value.instance_template.platform_id
+    nat         = try(each.value.instance_template.nat, null)
+    metadata    = try(each.value.instance_template.metadata, null)
 
     resources {
-      cores         = each.value.resources.cores
-      core_fraction = each.value.resources.core_fraction
-      memory        = each.value.resources.memory
-      gpus          = try(each.value.resources.gpus, null)
+      cores         = each.value.instance_template.resources.cores
+      core_fraction = each.value.instance_template.resources.core_fraction
+      memory        = each.value.instance_template.resources.memory
+      gpus          = try(each.value.instance_templateresources.gpus, null)
     }
 
     boot_disk {
-      type = each.value.boot_disk.type
-      size = each.value.boot_disk.size
+      type = each.value.instance_template.boot_disk.type
+      size = each.value.instance_template.boot_disk.size
     }
 
     scheduling_policy {
-      preemptible = try(each.value.scheduling_policy.preemptible, null)
+      preemptible = try(each.value.instance_template.scheduling_policy.preemptible, null)
     }
 
     network_interface {
-      subnet_ids         = each.value.network_interface.subnet_ids
-      security_group_ids = try(each.value.network_interface.security_group_ids, null)
+      subnet_ids         = each.value.instance_template.network_interface.subnet_ids
+      security_group_ids = try(each.value.instance_template.network_interface.security_group_ids, null)
     }
 
     container_runtime {

@@ -92,7 +92,7 @@ variable "labels" {
   default = {}
 }
 
-variable "kubernetes_node_groups" {
+variable "node_groups" {
   type    = any
   default = {}
 }
