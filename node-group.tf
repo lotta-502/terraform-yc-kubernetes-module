@@ -48,9 +48,11 @@ resource "yandex_kubernetes_node_group" "this" {
     labels = var.labels
   }
 
-  location {
-    zone      = each.value.location.zone
-    subnet_id = each.value.location.subnet_id
+  allocation_policy {
+    location {
+      zone      = each.value.allocation_policy.location.zone
+      subnet_id = each.value.allocation_policy.location.subnet_id
+    }
   }
 
   maintenance_policy {
