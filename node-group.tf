@@ -38,7 +38,10 @@ resource "yandex_kubernetes_node_group" "this" {
 
     network_interface {
       subnet_ids         = each.value.instance_template.network_interface.subnet_ids
-      security_group_ids = try(each.value.instance_template.network_interface.security_group_ids, null)
+      security_group_ids = concat(
+        try(each.value.instance_template.network_interface.security_group_ids, []),
+        [yandex_vpc_security_group.k8s_node.id]
+      )
     }
 
     container_runtime {
